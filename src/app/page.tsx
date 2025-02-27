@@ -13,7 +13,7 @@ export default function Home() {
     const [TelegramWebApp, setTelegramWebApp] = useState<TelegramWebAppType | null>(null); // Состояние для TelegramWebApp
 
     useEffect(() => {
-        // Динамический импорт библиотеки
+
         import('@twa-dev/sdk')
             .then((module) => {
                 const TWA = module.default;
