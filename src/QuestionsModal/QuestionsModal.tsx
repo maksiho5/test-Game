@@ -3,14 +3,26 @@
 import React, { useState, useEffect } from 'react';
 import styles from './QuestionsModal.module.css'; // Создайте этот файл
 
-const QuestionsModal = ({ isOpen, onClose } : any) => {
-    const [currentQuestion, setCurrentQuestion] = useState(null);
-    const [answers, setAnswers] = useState([]); // Массив ответов (правильный + 2 неправильных)
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [isAnswered, setIsAnswered] = useState(false); // Состояние, указывающее, был ли ответ дан
+interface Question {
+    num1: number;
+    num2: number;
+    sign: string;
+    correctAnswer: number;
+}
+
+interface QuestionsModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
+    const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+    const [answers, setAnswers] = useState<number[]>([]); // Массив ответов (правильный + 2 неправильных)
+    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+    const [isAnswered, setIsAnswered] = useState<boolean>(false); // Состояние, указывающее, был ли ответ дан
 
     // Массив с вопросами и ответами
-    const questionsData = [
+    const questionsData: Question[] = [
         { num1: 5, num2: 3, sign: '+', correctAnswer: 8 },
         { num1: 10, num2: 4, sign: '-', correctAnswer: 6 },
         { num1: 2, num2: 6, sign: '*', correctAnswer: 12 },
@@ -19,13 +31,13 @@ const QuestionsModal = ({ isOpen, onClose } : any) => {
     ];
 
     // Функция для генерации случайного числа в заданном диапазоне (для создания неправильных ответов)
-    const getRandomNumber = (min:any, max:any) => {
+    const getRandomNumber = (min: number, max: number): number => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     // Функция для генерации массива ответов
-    const generateAnswers = (correctAnswer: any) => {
-        const answerOptions = [correctAnswer];
+    const generateAnswers = (correctAnswer: number): number[] => {
+        const answerOptions: number[] = [correctAnswer];
         while (answerOptions.length < 3) {
             const randomAnswer = getRandomNumber(correctAnswer - 5, correctAnswer + 5); // Диапазон для неправильных ответов
             if (!answerOptions.includes(randomAnswer) && randomAnswer !== correctAnswer) {
@@ -51,7 +63,6 @@ const QuestionsModal = ({ isOpen, onClose } : any) => {
         setIsAnswered(false); // Сброс состояния ответа
     };
 
-
     useEffect(() => {
         if (isOpen) {
             pickNewQuestion();
@@ -59,7 +70,7 @@ const QuestionsModal = ({ isOpen, onClose } : any) => {
     }, [isOpen]);
 
     // Обработчик выбора ответа
-    const handleAnswerClick = (answer) => {
+    const handleAnswerClick = (answer: number) => {
         if (isAnswered) return; // Запрещаем выбор после ответа
         setSelectedAnswer(answer);
         setIsAnswered(true);
@@ -67,7 +78,7 @@ const QuestionsModal = ({ isOpen, onClose } : any) => {
 
     // Обработчик подтверждения ответа (например, для начисления очков)
     const handleConfirmAnswer = () => {
-        if (selectedAnswer === currentQuestion.correctAnswer) {
+        if (selectedAnswer === currentQuestion?.correctAnswer) {
             // Правильный ответ - добавьте логику для начисления очков
             console.log('Correct!');
         } else {
