@@ -37,10 +37,14 @@ export default function Home() {
         }
     }, [TelegramWebApp]); 
 
+    const user = TelegramWebApp.initDataUnsafe?.user;
+
     return (
         <div className="backround">
             <h1 className='white'>{userId}</h1>
+            <h1 className='white'>{user}</h1>
             <Harek />
+
         </div>
     );
 }
