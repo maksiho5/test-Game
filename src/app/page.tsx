@@ -38,11 +38,9 @@ export default function Home() {
     }, [TelegramWebApp]); 
 
 
-
     return (
         <div className="backround">
             <h1 className='white'>{userId}</h1>
-            <h1 className='white'>{TelegramWebApp.initDataUnsafe}</h1>
             <Harek />
 
         </div>
