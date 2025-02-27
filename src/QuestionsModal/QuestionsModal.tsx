@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './QuestionsModal.module.css'; // Создайте этот файл
 
-const QuestionsModal = ({ isOpen, onClose }) => {
+const QuestionsModal = ({ isOpen, onClose } : any) => {
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [answers, setAnswers] = useState([]); // Массив ответов (правильный + 2 неправильных)
     const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -19,7 +19,7 @@ const QuestionsModal = ({ isOpen, onClose }) => {
     ];
 
     // Функция для генерации случайного числа в заданном диапазоне (для создания неправильных ответов)
-    const getRandomNumber = (min, max) => {
+    const getRandomNumber = (min:any, max:any) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
