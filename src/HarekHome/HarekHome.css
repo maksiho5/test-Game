@@ -31,7 +31,8 @@
 .interactions {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -240,7 +241,9 @@
     }
 }
 
-/*  Дополнительные стили для улучшения  */
+.list_style {
+    list-style: none;
+}
 h1,
 h2 {
     color: #fff;
