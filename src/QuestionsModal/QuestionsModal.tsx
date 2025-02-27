@@ -120,7 +120,7 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
                                             : ''
                                         }`}
                                     onClick={() => handleAnswerClick(answer)}
-                                    disabled={isAnswered} // Блокируем клики после ответа
+           
                                 >
                                     {answer}
                                 </div>
