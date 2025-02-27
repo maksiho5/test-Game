@@ -1,0 +1,258 @@
+/*  Стили для мобильной адаптивности и кликов  */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+    background: #1e1e1e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    color: #fff;
+    /*  Добавим белый цвет текста по умолчанию  */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2em;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 1em;
+    color: #ccc;
+}
+
+.interactions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.coins {
+    display: flex;
+    align-items: center;
+}
+
+.coins img {
+    width: 52px;
+    height: 52px;
+    margin-right: 8px;
+}
+
+.cliker {
+    position: relative;
+    cursor: pointer;
+
+}
+
+.cliker .harek {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+.harek {
+    transition: transform 0.5s ease;
+
+}
+.cliker.clicked .harek,
+.cliker:active .harek {
+    transform: scale(0.9); 
+}
+
+.cliker .harek img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cliker .round_harek {
+    transition: transform 0.5s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.cliker .round_harek img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.force_container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.force_block {
+    display: flex;
+    align-items: center;
+    background-color: #2c2c2c;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.lightning img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.upgrades {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.upgrade-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upgrade-item {
+    background-color: #2c2c2c;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.upgrade-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.upgrade-item h3 {
+    margin: 0 0 5px;
+}
+
+.upgrade-item p {
+    font-size: 0.9em;
+    color: #ccc;
+    margin: 0 0 8px;
+}
+
+.upgrade-item button {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu {
+    width: 100%;
+    margin-top: auto;
+    background-color: #2c2c2c;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.menu ul {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #444;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 5px;
+
+}
+
+.menu ul:last-child {
+    border-bottom: none;
+}
+
+.menu img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer {
+    text-align: center;
+    padding: 16px;
+    color: #ccc;
+}
+
+
+.cliker:active {
+    transform: scale(0.5);
+}
+
+/*  Медиа-запросы для адаптивности  */
+@media (max-width: 768px) {
+    .container {
+        padding: 12px;
+    }
+
+    .interactions {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .coins,
+    .cliker {
+        margin-bottom: 12px;
+    }
+
+    .force_block {
+        padding: 10px;
+    }
+
+    .menu {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 100px;
+    }
+
+    .cliker .harek {
+        width: 200px;
+        height: 200px;
+    }
+
+    .coins_number {
+        font-size: 30px;
+    }
+}
+
+/*  Дополнительные стили для улучшения  */
+h1,
+h2 {
+    color: #fff;
+    margin: 0;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+}

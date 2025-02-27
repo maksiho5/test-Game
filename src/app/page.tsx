@@ -4,7 +4,7 @@ import './page.css';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-
+import Harek from '@/HarekHome/HarekHome';
 // Определяем тип для TelegramWebApp (замените 'any' на более конкретный тип, если возможно)
 type TelegramWebAppType = any; // Или null
 
@@ -35,11 +35,12 @@ export default function Home() {
                 setUserId(user.id);
             }
         }
-    }, [TelegramWebApp]); // Зависимость от TelegramWebApp
+    }, [TelegramWebApp]); 
 
     return (
         <div className="backround">
-            <h1>Jsdkdkalk</h1>
+            <h1 className='white'>{userId}</h1>
+            <Harek />
         </div>
     );
 }
