@@ -31,7 +31,7 @@ export default function Harek() {
 
         setIsClicking(true);
         setCoins((prevCoins) => prevCoins + clickValue);
-        // addCoins()
+        addCoins()
         setForce((prevCoins) => {
             console.log(prevCoins + clickValue);
             if (prevCoins + clickValue == 6500) {
@@ -79,12 +79,12 @@ export default function Harek() {
 
                 <div className="interactions">
                     <div className="coins">
-                        <Image src="./valute_harek.png" alt="Coins" width={50} height={50} />
+                        <Image src="/valute_harek.png" alt="Coins" width={50} height={50} />
                         <h1 className="coins_number">{coins}</h1>
                     </div>
                     <div className={`cliker ${isClicking ? 'clicked' : ''}`} onClick={handleClick}>
                         <div className={`harek`} onClick={handleClick}>
-                            <Image src="./harek.png" alt="Harek" width={150} height={150} />
+                            <Image src="/harek.png" alt="Harek" width={150} height={150} />
                         </div>
                         <div className={`round_harek ${isClicking ? 'clicked' : ''}`} onClick={handleClick}>
                             <div className={`harek`} onClick={handleClick}>
@@ -97,7 +97,7 @@ export default function Harek() {
                 <div className="force_container">
                     <div className="force_block">
                         <div className="lightning">
-                            <Image src="./lightning.svg" alt="Lightning" width={50} height={50} />
+                            <Image src="/lightning.svg" alt="Lightning" width={50} height={50} />
                         </div>
                         <h2>{force}/6500</h2>
                     </div>
@@ -107,7 +107,7 @@ export default function Harek() {
                     <h2>Улучшения</h2>
                     <div className="upgrade-list">
                         <div className="upgrade-item">
-                            <Image src="./hamster.svg" alt="Улучшение 1" width={50} height={50} />
+                            <Image src="/hamster.svg" alt="Улучшение 1" width={50} height={50} />
                             <div>
                                 <h3>Автокликер</h3>
                                 <p>Автоматически кликает за вас.</p>
@@ -115,7 +115,7 @@ export default function Harek() {
                             </div>
                         </div>
                         <div className="upgrade-item">
-                            <Image src="./hamster.svg" alt="Улучшение 2" width={50} height={50} />
+                            <Image src="/hamster.svg" alt="Улучшение 2" width={50} height={50} />
                             <div>
                                 <h3>Удвоение клика</h3>
                                 <p>Увеличивает количество монет за клик.</p>
@@ -128,14 +128,14 @@ export default function Harek() {
                 <div className="menu">
                     <ul>
                         <li className='list_style'>
-                            <Image src="./icon_bitcon.svg" alt="Bitcon Icon" width={50} height={50} />
+                            <Image src="/icon_bitcon.svg" alt="Bitcon Icon" width={50} height={50} />
                         </li>
                         <li>
                             <a href="#">Главная</a>
                         </li>
                     </ul>
                     <ul>
-                        <Image src="./kirca.svg" alt="Kirca Icon" width={50} height={50} />
+                        <Image src="/kirca.svg" alt="Kirca Icon" width={50} height={50} />
                         <li>
                             <a href="#">Прокачка</a>
                         </li>

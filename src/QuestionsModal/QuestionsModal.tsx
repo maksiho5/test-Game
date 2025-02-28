@@ -72,9 +72,13 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
     // Обработчик выбора ответа
     const handleAnswerClick = (answer: number) => {
         if (isAnswered) return; // Запрещаем выбор после ответа
+        console.log(answer);
+        
         setSelectedAnswer(answer);
         setIsAnswered(true);
-        if (selectedAnswer === currentQuestion?.correctAnswer) {
+
+        
+        if (answer === currentQuestion?.correctAnswer) {
             // Правильный ответ - добавьте логику для начисления очков
             setAnswerText("Правильно")
             console.log('Correct!');

@@ -18,7 +18,7 @@ const useStoreCoins = create<Store>((set, get) => ({ // Added `get` to the funct
   multiplyer: 1,
   addCoins: async () => {
     try {
-      await axios.post("http://tg.realfast.click:8080/click", { user_id: 1461324815, click: 1 });  // Use get().multiplyer
+      // await axios.post("http://tg.realfast.click:8080/click", { user_id: 1461324815, clicks: 1 });  // Use get().multiplyer
 
 
       set((state) => ({

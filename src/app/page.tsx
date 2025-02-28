@@ -41,7 +41,7 @@ export default function Home() {
     }, [TelegramWebApp]);
 
     useEffect(() => {
-        // getBalance()
+        getBalance()
         // getMultiplyer()
     }, [])
     // if (typeof window !== "undefined") {
