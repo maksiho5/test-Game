@@ -2,11 +2,21 @@ import { create } from "zustand";
 import axios from "axios";
 import { log } from "node:console";
 
-const useStoreCoins = create((set, get) => ({ // Added `get` to the function
+interface Store {
+  coins: number,
+  noAsyncCoins: number,
+  multiplyer: number,
+  addCoins: () => void,
+  getBalance: () => void,
+  registerUser: () => void,
+  getMultiplyer: () => void,
+}
+
+const useStoreCoins = create<Store>((set, get) => ({ // Added `get` to the function
   coins: 0,
   noAsyncCoins: 0,
   multiplyer: 1,
-  addCoins: async (el) => {
+  addCoins: async () => {
     try {
       await axios.post("http://tg.realfast.click:8080/click", { user_id: 1461324815, click: 1 });  // Use get().multiplyer
 
@@ -40,7 +50,7 @@ const useStoreCoins = create((set, get) => ({ // Added `get` to the function
     }
   },
 
-  registerUser: async (el) => {
+  registerUser: async () => {
     try {
       const data = await axios.post("http://tg.realfast.click:8080/register", { user_id: 1461324815 });
       // console.log("Registration data:", data);
@@ -49,7 +59,7 @@ const useStoreCoins = create((set, get) => ({ // Added `get` to the function
     }
   },
 
-  getMultiplyer: async (el) => {
+  getMultiplyer: async () => {
     try {
       const response = await axios.post("http://tg.realfast.click:8080/get_multiplyer", { user_id: 1461324815 });
       set({ multiplyer: response.data });
