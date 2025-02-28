@@ -20,9 +20,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     position: relative; /* Для кнопки закрытия */
     width: 80%;
-    max-width: 400px; /* Максимальная ширина для экранов большего размера */
+    max-width: 400px; 
+    animation: ani 2.5s forwards;
   }
   
+
+  @keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
   .closeButton {
     position: absolute;
     top: 10px;
@@ -62,6 +68,7 @@
   
   .answersNumber {
     background-color: #f0f0f0;
+    color: black;
     padding: 12px;
     border-radius: 4px;
     text-align: center;
@@ -92,7 +99,12 @@
     font-size: 1.1em;
   }
   
-
+.answerText {
+  justify-content: center;
+  font-size: 30px;
+  color: black;
+  margin-bottom: 15px;
+}
   @media (min-width: 600px) {
     .modalContent {
       width: 60%;

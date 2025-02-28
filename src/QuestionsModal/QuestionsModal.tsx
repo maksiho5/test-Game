@@ -20,7 +20,7 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
     const [answers, setAnswers] = useState<number[]>([]); // Массив ответов (правильный + 2 неправильных)
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [isAnswered, setIsAnswered] = useState<boolean>(false); // Состояние, указывающее, был ли ответ дан
-
+    const [answerText, setAnswerText] = useState("")
     // Массив с вопросами и ответами
     const questionsData: Question[] = [
         { num1: 5, num2: 3, sign: '+', correctAnswer: 8 },
@@ -74,15 +74,26 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
         if (isAnswered) return; // Запрещаем выбор после ответа
         setSelectedAnswer(answer);
         setIsAnswered(true);
+        if (selectedAnswer === currentQuestion?.correctAnswer) {
+            // Правильный ответ - добавьте логику для начисления очков
+            setAnswerText("Правильно")
+            console.log('Correct!');
+        } else {
+            setAnswerText("Неправильно")
+
+            console.log('Incorrect!');
+        }
     };
 
     // Обработчик подтверждения ответа (например, для начисления очков)
     const handleConfirmAnswer = () => {
         if (selectedAnswer === currentQuestion?.correctAnswer) {
             // Правильный ответ - добавьте логику для начисления очков
+            setAnswerText((el) => el = "Правильно")
             console.log('Correct!');
         } else {
-            // Неправильный ответ
+            setAnswerText("Неправильно")
+
             console.log('Incorrect!');
         }
         // Закрываем модальное окно и готовим новый вопрос для следующего открытия
@@ -104,9 +115,9 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
                     </button>
                     <div className={styles.questions}>
                         <div className={styles.numbers}>
-                            <h3>{num1}</h3>
-                            <h3>{sign}</h3>
-                            <h3>{num2}</h3>
+                            <h3 >{num1}</h3>
+                            <h3 >{sign}</h3>
+                            <h3 >{num2}</h3>
                             <h3>= ?</h3>
                         </div>
                         <div className={styles.answers}>
@@ -126,6 +137,8 @@ const QuestionsModal: React.FC<QuestionsModalProps> = ({ isOpen, onClose }) => {
                                 </div>
                             ))}
                         </div>
+
+                        <div className={styles.answerText}>{answerText}</div>
                         {isAnswered && (
                             <button className={styles.confirmButton} onClick={handleConfirmAnswer}>
                                 Далее
