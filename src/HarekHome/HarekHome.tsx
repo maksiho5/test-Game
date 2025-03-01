@@ -20,6 +20,10 @@ export default function Harek({userId}: {userId: number | string}) {
     const buyMultiplyerStore = useStoreCoins(state => state.buyMultiplyerStore)
     const nextMultiplyerCost = useStoreCoins(state => state.nextMultiplyerCost)
 
+
+
+    const [click, setClick] = useState(0);
+
     const clickValue = 1;
     const clickDelay = 100;
     let timeoutId: any = null;
@@ -41,6 +45,14 @@ export default function Harek({userId}: {userId: number | string}) {
             return;
         }
 
+        // setTimeout(() => {
+        //     console.log(click);
+            
+        //     if(click > 2){
+        //         alert("dfsdds")
+                
+        //     }
+        // }, 1000)
         setIsClicking(true);
         addCoins()
         setForce((prevCoins) => {
@@ -65,7 +77,7 @@ export default function Harek({userId}: {userId: number | string}) {
             }
             return prevCoins + clickValue
         });
-
+        setClick((el ) => el + 1)
 
 
         timeoutId = setTimeout(() => {
@@ -120,16 +132,16 @@ console.log(multiplyer);
 
                 <div className="interactions">
                     <div className="coins">
-                        <Image src="/valute_harek.png" alt="Coins" width={50} height={50} />
+                        <Image src="./valute_harek.png" alt="Coins" width={50} height={50} />
                         <h1 className="coins_number">{coins}</h1>
                     </div>
                     <div className={`cliker ${isClicking ? 'clicked' : ''}`} onClick={handleClick}>
                         <div className={`harek`} >
-                            <Image src="/harek.png"  alt="Harek" width={150} height={150}  />
+                            <Image src="./harek.png"  alt="Harek" width={150} height={150}  />
                         </div>
                         <div className={`round_harek ${isClicking ? 'clicked' : ''}`} >
                             <div className={`harek`} >
-                                <Image src="/round_harek.svg" alt="Round Harek" width={100} height={100} />
+                                <Image src="./round_harek.svg" alt="Round Harek" width={100} height={100} />
                             </div>
                         </div>
                     </div>
@@ -138,7 +150,7 @@ console.log(multiplyer);
                 <div className="force_container">
                     <div className="force_block">
                         <div className="lightning">
-                            <Image src="/lightning.svg" alt="Lightning" width={50} height={50} />
+                            <Image src="./lightning.svg" alt="Lightning" width={50} height={50} />
                         </div>
                         <h2>{forceValue}/6500</h2>
                     </div>
@@ -166,7 +178,7 @@ console.log(multiplyer);
                 <div className="menu">
                     <ul>
                         <li className='list_style'>
-                            <Image src="/icon_bitcon.svg" alt="Bitcon Icon" width={50} height={50} />
+                            <Image src="./icon_bitcon.svg" alt="Bitcon Icon" width={50} height={50} />
                         </li>
                         <li>
                             <a href="#">Главная</a>
