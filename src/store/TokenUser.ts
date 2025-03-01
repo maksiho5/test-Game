@@ -10,17 +10,19 @@ interface Store {
   getBalance: () => void,
   registerUser: () => void,
   getMultiplyer: () => void,
+  buyMultiplyerStore: () => void,
+  nextMultiplyerCost: number
+
 }
 
-const useStoreCoins = create<Store>((set, get) => ({ // Added `get` to the function
+const useStoreCoins = create<Store>((set, get) => ({
   coins: 0,
   noAsyncCoins: 0,
   multiplyer: 1,
+  nextMultiplyerCost: 0,
   addCoins: async () => {
     try {
-      // await axios.post("http://tg.realfast.click:8080/click", { user_id: 1461324815, clicks: 1 });  // Use get().multiplyer
-
-
+      axios.post("http://tg.realfast.click:8080/click", { user_id: 1461324815, clicks: 1 });
       set((state) => ({
         coins: state.coins + get().multiplyer,
         noAsyncCoins: state.noAsyncCoins + get().multiplyer,
@@ -33,17 +35,12 @@ const useStoreCoins = create<Store>((set, get) => ({ // Added `get` to the funct
   getBalance: async () => {
     try {
       const data = await axios.post("http://tg.realfast.click:8080/get_balance",
-        JSON.stringify({ user_id: 1461324815 }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-
-          },
-          withCredentials: true
-        },
+        { user_id: 1461324815 }
       );
       console.log(data.data);
-
+      set((state) => ({
+        coins: data.data,
+      }));
 
     } catch (error) {
       console.error("Error in getBalance:", error);
@@ -53,7 +50,7 @@ const useStoreCoins = create<Store>((set, get) => ({ // Added `get` to the funct
   registerUser: async () => {
     try {
       const data = await axios.post("http://tg.realfast.click:8080/register", { user_id: 1461324815 });
-      // console.log("Registration data:", data);
+      console.log("Registration data:", data);
     } catch (error) {
       console.error("Error in registerUser:", error);
     }
@@ -62,7 +59,27 @@ const useStoreCoins = create<Store>((set, get) => ({ // Added `get` to the funct
   getMultiplyer: async () => {
     try {
       const response = await axios.post("http://tg.realfast.click:8080/get_multiplyer", { user_id: 1461324815 });
-      set({ multiplyer: response.data });
+      console.log(response.data);
+
+      set({
+        multiplyer: response.data.multiplyer,
+        nextMultiplyerCost: response.data.next_multiplyer_cost
+      });
+    } catch (error) {
+      console.error("Error in getMultiplyer:", error);
+    }
+  },
+  buyMultiplyerStore: async () => {
+    try {
+
+
+      const response = await axios.post("http://tg.realfast.click:8080/buy_multiplyer", { user_id: 1461324815 });
+      console.log(response.data);
+      set((state) => ({
+        multiplyer: state.multiplyer + 1,
+        nextMultiplyerCost: response.data
+      }));
+
     } catch (error) {
       console.error("Error in getMultiplyer:", error);
     }

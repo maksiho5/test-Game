@@ -15,6 +15,7 @@ export default function Home() {
     const [TelegramWebApp, setTelegramWebApp] = useState<TelegramWebAppType | null>(null); // Состояние для TelegramWebApp
     const getBalance = useStoreCoins(state => state.getBalance)
     const getMultiplyer = useStoreCoins(state => state.getMultiplyer)
+    const registerUser = useStoreCoins(state => state.registerUser)
     useEffect(() => {
 
         import('@twa-dev/sdk')
@@ -41,21 +42,26 @@ export default function Home() {
     }, [TelegramWebApp]);
 
     useEffect(() => {
+        registerUser()
         getBalance()
-        // getMultiplyer()
+        getMultiplyer()
     }, [])
-    // if (typeof window !== "undefined") {
-    //     window.addEventListener("load", () => {
-    //         getBalance()
-    //         getMultiplyer()
-    //     })
+
+
+    // if (userId == 0) {
+    //     return <>
+    //         <div className="backround">
+    //             <h1 className='erroy_id'>Зайдите с телеграмма или зарегестрируетесь</h1>
+
+    //         </div>
+    //     </>
     // }
+
 
 
     return (
         <div className="backround">
-            <h1 className='white'>{userId}</h1>
-            <Harek />
+            <Harek userId={userId} />
 
         </div>
     );
