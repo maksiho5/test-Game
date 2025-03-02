@@ -2,7 +2,7 @@
 
 import './page.css';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Harek from '@/HarekHome/HarekHome';
 
@@ -16,6 +16,8 @@ export default function Home() {
     const getBalance = useStoreCoins(state => state.getBalance)
     const getMultiplyer = useStoreCoins(state => state.getMultiplyer)
     const registerUser = useStoreCoins(state => state.registerUser)
+    const leaderboardGet = useStoreCoins(state => state.leaderboardGet)
+    const addUserId = useStoreCoins(state => state.addUserId)
     useEffect(() => {
 
         import('@twa-dev/sdk')
@@ -36,7 +38,7 @@ export default function Home() {
 
             console.log(user);
             if (user) {
-                setUserId(user.id);
+                addUserId(user.id);
             }
         }
     }, [TelegramWebApp]);
@@ -45,23 +47,23 @@ export default function Home() {
         registerUser()
         getBalance()
         getMultiplyer()
+        leaderboardGet()
     }, [])
 
 
-    // if (userId == 0) {
-    //     return <>
-    //         <div className="backround">
-    //             <h1 className='erroy_id'>Зайдите с телеграмма или зарегестрируетесь</h1>
-
-    //         </div>
-    //     </>
-    // }
+    if (userId == 0) {
+        return <>
+            <div className="backround">
+                <h1 className='erroy_id'>Зайдите с телеграмма или зарегестрируетесь</h1>
+            </div>
+        </>
+    }
 
 
 
     return (
         <div className="backround">
-            <Harek userId={userId} />
+            <Harek  />
 
         </div>
     );

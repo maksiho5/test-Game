@@ -77,9 +77,9 @@
     font-size: 1.2em;
   }
   
-  .answersNumber:hover {
+  /* .answersNumber:hover {
     background-color: #e0e0e0;
-  }
+  } */
   
   .correctAnswer {
     background-color: #a5d6a7; 

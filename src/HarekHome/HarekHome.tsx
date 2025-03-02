@@ -1,12 +1,13 @@
 'use client'
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import './HarekHome.css'
 import QuestionsModal from "../QuestionsModal/QuestionsModal";
 import { log } from "node:console";
 import useStoreCoins from '@/store/TokenUser';
+import Leaderboard from '@/Leaderboard/Leaderboard';
 
-export default function Harek({userId}: {userId: number | string}) {
+export default function Harek() {
 
     const [force, setForce] = useState(0);
     const [isClicking, setIsClicking] = useState(false);
@@ -14,11 +15,14 @@ export default function Harek({userId}: {userId: number | string}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [forceValue, setForceValue] = useState(0);
 
+    const userId = useStoreCoins(state => state.userId)
     const addCoins = useStoreCoins(state => state.addCoins)
     const coins = useStoreCoins(state => state.coins)
     const multiplyer = useStoreCoins(state => state.multiplyer)
     const buyMultiplyerStore = useStoreCoins(state => state.buyMultiplyerStore)
     const nextMultiplyerCost = useStoreCoins(state => state.nextMultiplyerCost)
+    const lastClick = useRef(0)
+    const max_clicks_second = 10
 
 
 
@@ -44,13 +48,18 @@ export default function Harek({userId}: {userId: number | string}) {
             timeoutId = null;
             return;
         }
-
+        const now = Date.now()
+        if (lastClick.current && (now - lastClick.current) < (1000 / max_clicks_second)) {
+            setIsModalOpen(true);
+            return
+        }
+        lastClick.current = now
         // setTimeout(() => {
         //     console.log(click);
-            
+
         //     if(click > 2){
         //         alert("dfsdds")
-                
+
         //     }
         // }, 1000)
         setIsClicking(true);
@@ -77,7 +86,7 @@ export default function Harek({userId}: {userId: number | string}) {
             }
             return prevCoins + clickValue
         });
-        setClick((el ) => el + 1)
+        setClick((el) => el + 1)
 
 
         timeoutId = setTimeout(() => {
@@ -105,20 +114,20 @@ export default function Harek({userId}: {userId: number | string}) {
 
 
     const buyMultiplyer = () => {
-        
-        if(coins >= nextMultiplyerCost){
+
+        if (coins >= nextMultiplyerCost) {
             buyMultiplyerStore()
             console.log(2);
-            
-        }else {
+
+        } else {
             alert("У вас не хватает денег")
         }
     }
 
 
 
-console.log(nextMultiplyerCost);
-console.log(multiplyer);
+    console.log(nextMultiplyerCost);
+    console.log(multiplyer);
 
 
     return (
@@ -137,7 +146,7 @@ console.log(multiplyer);
                     </div>
                     <div className={`cliker ${isClicking ? 'clicked' : ''}`} onClick={handleClick}>
                         <div className={`harek`} >
-                            <Image src="./harek.png"  alt="Harek" width={150} height={150}  />
+                            <Image src="./harek.png" alt="Harek" width={150} height={150} />
                         </div>
                         <div className={`round_harek ${isClicking ? 'clicked' : ''}`} >
                             <div className={`harek`} >
@@ -175,6 +184,8 @@ console.log(multiplyer);
                     </div>
                 </section>
 
+
+                <Leaderboard />
                 <div className="menu">
                     <ul>
                         <li className='list_style'>
