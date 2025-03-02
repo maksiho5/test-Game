@@ -46,16 +46,12 @@ const useStoreCoins = create<Store>((set, get) => ({
     }
   },
 
+ 
   getBalance: async () => {
     try {
-      const data = await axios.post("https://tg.realfast.click/get_balance",
-        { user_id: get().userId }
-      );
-      console.log(data.data);
-      set((state) => ({
-        coins: data.data,
-      }));
-
+      const userId = get().userId;
+      const data = await axios.post("https://tg.realfast.click/get_balance", { user_id: userId });
+      set({ coins: data.data });
     } catch (error) {
       console.error("Error in getBalance:", error);
     }

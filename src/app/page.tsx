@@ -48,7 +48,7 @@ export default function Home() {
         getBalance()
         getMultiplyer()
         leaderboardGet()
-    }, [])
+    }, [userId])
 
 
     if (userId == 0) {
