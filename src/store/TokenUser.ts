@@ -34,7 +34,7 @@ const useStoreCoins = create<Store>((set, get) => ({
 
   addCoins: async () => {
     try {
-      axios.post("https://tg.realfast.click/click", {  clicks: 1 });
+      axios.post("https://tg.realfast.click/click", { user_id: get().userId, clicks: 1 });
       set((state) => ({
         coins: state.coins + get().multiplyer,
         noAsyncCoins: state.noAsyncCoins + get().multiplyer,
@@ -61,7 +61,7 @@ const useStoreCoins = create<Store>((set, get) => ({
 
   registerUser: async () => {
     try {
-      const data = await axios.post("https://tg.realfast.click/register", { });
+      const data = await axios.post("https://tg.realfast.click/register", { user_id: get().userId });
       console.log("Registration data:", data);
     } catch (error) {
       console.error("Error in registerUser:", error);
@@ -70,7 +70,7 @@ const useStoreCoins = create<Store>((set, get) => ({
 
   getMultiplyer: async () => {
     try {
-      const response = await axios.post("https://tg.realfast.click/get_multiplyer", { });
+      const response = await axios.post("https://tg.realfast.click/get_multiplyer", { user_id: get().userId });
       console.log(response.data);
 
       set({
@@ -85,7 +85,7 @@ const useStoreCoins = create<Store>((set, get) => ({
     try {
 
 
-      const response = await axios.post("https://tg.realfast.click/buy_multiplyer", { });
+      const response = await axios.post("https://tg.realfast.click/buy_multiplyer", { user_id: get().userId });
       console.log(response.data);
       set((state) => ({
         multiplyer: state.multiplyer + 1,
