@@ -64,7 +64,7 @@ export default function Home() {
     return (
         <div className="backround">
             <Harek  />
-      <div className="">{userId == 0}</div>
+
         </div>
     );
 }
