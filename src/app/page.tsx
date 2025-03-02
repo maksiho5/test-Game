@@ -11,7 +11,7 @@ import useStoreCoins from '@/store/TokenUser';
 type TelegramWebAppType = any; // Или null
 
 export default function Home() {
-    const [userId, setUserId] = useState(0);
+    const userId = useStoreCoins(state => state.userId)
     const [TelegramWebApp, setTelegramWebApp] = useState<TelegramWebAppType | null>(null); // Состояние для TelegramWebApp
     const getBalance = useStoreCoins(state => state.getBalance)
     const getMultiplyer = useStoreCoins(state => state.getMultiplyer)
