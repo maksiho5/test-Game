@@ -83,7 +83,7 @@ const useStoreCoins = create<Store>((set, get) => ({
     try {
 
 
-      const response = await axios.post("https://tg.realfast.click/buy_multiplyer", { user_id: 1461324815 });
+      const response = await axios.post("https://tg.realfast.click/buy_multiplyer", { user_id: get().userId });
       console.log(response.data);
       set((state) => ({
         multiplyer: state.multiplyer + 1,
