@@ -87,7 +87,8 @@ const useStoreCoins = create<Store>((set, get) => ({
       console.log(response.data);
       set((state) => ({
         multiplyer: state.multiplyer + 1,
-        nextMultiplyerCost: response.data
+        nextMultiplyerCost: response.data,
+        coins: get().coins - response.data,
       }));
 
     } catch (error) {
