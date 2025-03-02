@@ -85,10 +85,10 @@ const useStoreCoins = create<Store>((set, get) => ({
 
       const response = await axios.post("https://tg.realfast.click/buy_multiplyer", { user_id: get().userId });
       console.log(response.data);
+      get().getBalance()
       set((state) => ({
         multiplyer: state.multiplyer + 1,
         nextMultiplyerCost: response.data,
-        coins: get().coins - response.data,
       }));
 
     } catch (error) {
